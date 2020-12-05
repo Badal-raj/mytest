@@ -1,23 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import { RouterMethod } from "./Routes";
+//import { TextBox } from "./Components/Common/FormComponents/TextBox";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <TextBox
+          type="text"
+          label="Name"
+          placeholder="Enter name"
+          name="name"
+        ></TextBox> */}
+
+        <div className="App">
+          <BrowserRouter>
+            <RouterMethod />
+          </BrowserRouter>
+        </div>
+        <p>Harikesh Bhardwaj</p>
       </header>
     </div>
   );
