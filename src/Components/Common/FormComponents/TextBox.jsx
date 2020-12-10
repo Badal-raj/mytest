@@ -10,6 +10,7 @@ export const TextBox = ({
   onChange,
   onBlur,
   error,
+  children
 }) => {
   return (
     <FormGroup>
@@ -24,6 +25,7 @@ export const TextBox = ({
       />
       {error && <span className="error-msg">{error}</span>}
       {/* <span className="focus-border"></span> */}
+      {children}
     </FormGroup>
   );
 };
