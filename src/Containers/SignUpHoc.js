@@ -1,61 +1,115 @@
-import React,{useState} from "react";
+import React from 'react';
+//import {connect} from 'react-redux';
+ import { SignUp } from "../Components/SignUp";
+ import * as Constents from '../Constents';
+ //import {registerAction} from '../Redux/User/userAction'
 
-import { SignUp } from "../Components/SignUp";
-import * as Constents from '../Constents';
+class SignUpHoc extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        fields: {name:'',dob:'', email:'', password:''},
+        errors: {},
+      }
 
-export const SignUpHoc = ({history}) => {
-  console.log('history', history)
-  const [dobDate, setDobDate] = useState();
-const [errors, setErrors]=useState('')
-  const [fields, setFields]=useState({
-    name:'',
-    email:'',
-    password:'',
-    confirmPassword:''
-  })
+    };
 
-  const handleInputChange=(event)=>{
-    const { name, value } = event.target ? event.target : event;
-    setFields({ ...fields, [name]: value });
-  }
-  const handleformSubmit=(e)=>{
-    e.preventDefault();
-//  const data= {...fields}
-  fields.dob=dobDate
-    console.log({fields})
-   // history.push(Constents.PROFILE)
-  
-  }
+    handleInputChange=(e)=> {
+      let fields = this.state.fields;
+      fields[e.target.name] = e.target.value;
+      this.setState({
+        fields
+      });
 
-  const handleDateChange = date => {
-    setDobDate(date);
+    }
+
+   handleDateChange = date => {
+   const {fields}= this.state
+   fields.dob=date
+    this.setState({fields});
   };
 
+    handleformSubmit=(e)=> {
+      e.preventDefault();
+      if (this.validateForm()) {         
+          const { fields } = this.state;
+         
+               console.log(fields);
+               this.props.history.push(Constents.SIGIN)
+        // this.props.registerAction({fields})
 
-//  const  validateForm=(event)=> {
-//     // let fields = this.state.fields;
-//     // let errors = {};
-//     //const { name } = event.target ? event.target : event;
+          
+      }
+      
+    }
 
-//     let fields={}
-//     let formIsValid = true;
-  
-//     if (!fields['name']) {
-//       formIsValid = false;
-//       setErrors('*name is required');
-//     }
-  
-//     setErrors({...errors})
-//     return formIsValid;
-//   }
+    validateForm() {
+
+      let fields = this.state.fields;
+      let errors = {};
+      let formIsValid = true;
+
+      if (!fields["name"]) {
+        formIsValid = false;
+        errors["name"] = "*Please enter your name.";
+      }
 
 
-  return <SignUp
-    onInputChange={handleInputChange}
-    onFormSubmit={handleformSubmit}
-    fields={fields}
-    errors={errors}
-    handleDateChange={handleDateChange}
-    dob={dobDate}
-  ></SignUp>;
-};
+      if (!fields["dob"]) {
+        formIsValid = false;
+        errors["dob"] = "*Please enter your DOB.";
+      }
+   
+
+      if (!fields["email"]) {
+        formIsValid = false;
+        errors["email"] = "*Please enter your email-ID.";
+      }
+
+      if (!fields["password"]) {
+        formIsValid = false;
+        errors["password"] = "*Please enter your password.";
+      }
+
+     
+      if (!fields["confirmPassword"]){
+        formIsValid = false;
+        errors["confirmPassword"] = "*conform your password.";
+      }
+      if(fields["confirmPassword"] !== fields["password"]){
+        formIsValid = false;
+        errors["confirmPassword"] = "*password are not mached.";
+      }
+
+      this.setState({
+        errors: errors
+      });
+      console.log(formIsValid, errors);
+      return formIsValid;
+
+    }
+
+  render() {
+    const {errors, fields}= this.state
+    return (
+    <div id="main-registration-container">
+     <SignUp
+     onInputChange={this.handleInputChange}
+     onFormSubmit={this.handleformSubmit}
+     fields={fields}
+     errors={errors}
+     handleDateChange={this.handleDateChange}
+   ></SignUp>;
+</div>
+
+      );
+  }
+
+
+}
+
+// export default connect(null, {
+//   registerAction
+// })(SignUpHoc);
+
+export default SignUpHoc;

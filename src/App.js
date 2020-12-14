@@ -20,7 +20,6 @@ function App() {
             <RouterMethod />
           </BrowserRouter>
         </div>
-        <p>Harikesh Bhardwaj</p>
       </header>
     </div>
   );

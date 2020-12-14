@@ -3,8 +3,8 @@ import { Route,  BrowserRouter as Router, Switch } from "react-router-dom";
 
 import * as Constents from '../Constents';
 
-import { SignUpHoc } from "../Containers/SignUpHoc";
-import { SignInHoc } from "../Containers/SignInHoc";
+import  SignUpHoc  from "../Containers/SignUpHoc";
+import  SignInHoc  from "../Containers/SignInHoc";
 import {ProfileDetails} from '../Containers/ProfileDetails'
 
 export const RouterMethod = () => {

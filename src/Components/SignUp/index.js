@@ -10,8 +10,7 @@ import { Password } from "../Common/FormComponents/Password";
 import { RoundButton } from "../Common/FormComponents/Button";
 
 export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDateChange,dob }) => {
- // console.log('dob',dob, fields)
-
+ 
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -25,17 +24,13 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
     : new Date();
 
     const toggleDatePicker = (evt) => {
-      console.log('harikesh', evt)
       evt.nativeEvent.stopImmediatePropagation();
       setOpen(!open);
     };
   
     const closeOutsideClick = evt => {
-      console.log('outSide', menuRef)
       if (menuRef.current && !menuRef.current.contains(evt.target)) {
         const node = evt.target.parentNode;
-   
-        console.log('node', node)
 
         if (
           node &&
@@ -66,7 +61,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           name="name"
           onChange={onInputChange}
           value={fields.name || ''}
-          error={errors}
+          error={errors.name}
         />
 
         <TextBox
@@ -75,8 +70,9 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           type="text"
           name="dob"
           onChange={onInputChange}
-          value={dob || ''}
+          value={ fields.dob ||''}
          // onChange={toggleDatePicker}
+         error={errors.dob}
         >
           <span onClick={toggleDatePicker} className="icon-calendar">&#x24;</span>
           </TextBox>
@@ -98,6 +94,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           name="email"
           onChange={onInputChange}
           value={fields.email || ''}
+          error={errors.email}
         />
 
         <Password
@@ -107,6 +104,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           name="password"
           onChange={onInputChange}
           value={fields.password || ''}
+          error={errors.password}
         />
 
         <Password
@@ -116,6 +114,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           name="confirmPassword"
           onChange={onInputChange}
           value={fields.confirmPassword || ''}
+          error={errors.confirmPassword}
         />
 
         <RoundButton submit="submit" id="signUp">

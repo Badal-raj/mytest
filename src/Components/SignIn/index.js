@@ -5,15 +5,18 @@ import { TextBox } from "../Common/FormComponents/TextBox";
 import { Password } from "../Common/FormComponents/Password";
 import { RoundButton } from "../Common/FormComponents/Button";
 
-export const SignIn = () => {
+export const SignIn = ({ onInputChange, onFormSubmit, fields, errors }) => {
   return (
     <div className="account-login">
-      <Form>
+      <Form onSubmit={onFormSubmit}>
         <TextBox
           label="Email Address"
           placeholder="Enter email address"
           type="email"
           name="email"
+          onChange={onInputChange}
+          value={fields.email || ''}
+          error={errors.email}
         />
 
         <Password
@@ -21,6 +24,9 @@ export const SignIn = () => {
           placeholder="Enter password"
           type="password"
           name="password"
+          onChange={onInputChange}
+          value={fields.password || ''}
+          error={errors.password}
         />
 
         <RoundButton submit="submit" id="signUp">
