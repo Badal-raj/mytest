@@ -51,7 +51,7 @@ const [loader, setLoader]=useState(true)
       
     return(
 
-      <InfiniteScroll dataLength={data.length} next={loadMoreHandle} hasMore={true}>
+      <InfiniteScroll dataLength={data.length} nfetchInfiniteScrollexfetchInfiniteScrollt={loadMoreHandle} hasMore={true}>
           <>
           {
             data && data.map((image) => {
