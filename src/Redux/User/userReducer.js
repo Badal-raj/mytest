@@ -1,11 +1,7 @@
 
 import {
-    REGISTER_USER, 
     REGISTER_SUCCESS,
     REGISTER_ERROR,
-    LOGIN_USER,
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR
 } from '../actions'
 
 const initialState = {

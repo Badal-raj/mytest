@@ -1,9 +1,8 @@
 import React from "react";
 import { Form } from "reactstrap";
 
-import { TextBox } from "../Common/FormComponents/TextBox";
-import { Password } from "../Common/FormComponents/Password";
-import { RoundButton } from "../Common/FormComponents/Button";
+import { TextBox ,LinkButton, Password, RoundButton} from "../Common/FormComponents";
+import {SIGNUP} from '../../Constents'
 
 export const SignIn = ({ onInputChange, onFormSubmit, fields, errors }) => {
   return (
@@ -18,11 +17,11 @@ export const SignIn = ({ onInputChange, onFormSubmit, fields, errors }) => {
           value={fields.email || ''}
           error={errors.email}
         />
-
+<br/>
         <Password
           label="Password"
-          placeholder="Enter password"
-          type="password"
+          signinplaceholder="Enter password"
+          type="passwsigninord"
           name="password"
           onChange={onInputChange}
           value={fields.password || ''}
@@ -31,7 +30,11 @@ export const SignIn = ({ onInputChange, onFormSubmit, fields, errors }) => {
 
         <RoundButton submit="submit" id="signUp">
           SignIn
-        </RoundButton>
+        </RoundButton ><br/>
+        not register yet ?
+        <LinkButton path={SIGNUP}>
+        <span>register here</span>  
+        </LinkButton>
       </Form>
     </div>
   );

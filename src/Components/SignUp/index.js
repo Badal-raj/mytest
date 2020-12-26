@@ -30,15 +30,17 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
   
     const closeOutsideClick = evt => {
       if (menuRef.current && !menuRef.current.contains(evt.target)) {
+
+        console.log('menuRef.current', menuRef.current)
         const node = evt.target.parentNode;
 
-        if (
-          node &&
-          (node.classList.contains('react-calendar__decade-view') ||
-            node.classList.contains('react-calendar__year-view__months'))
-        ) {
-          return;
-        }
+        // if (
+        //   node &&
+        //   (node.classList.contains('react-calendar__decade-view') ||
+        //     node.classList.contains('react-calendar__year-view__months'))
+        // ) {
+        //   return;
+        // }
         setOpen(false);
       }
     };
@@ -49,7 +51,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
       return () => {
         document.removeEventListener('click', closeOutsideClick, false);
       };
-    });
+    },[]);
 
   return (
     <div className="account-login">
@@ -62,7 +64,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
           onChange={onInputChange}
           value={fields.name || ''}
           error={errors.name}
-        />
+        /><br/>
 
         <TextBox
           label="select dob"
@@ -87,6 +89,7 @@ export const SignUp = ({ onInputChange, onFormSubmit, fields, errors, handleDate
         />
           </div>
 )}
+<br/>
         <TextBox
           label="Email Address"
           placeholder="Enter email address"

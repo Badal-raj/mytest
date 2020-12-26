@@ -102,7 +102,7 @@ class SignUpHoc extends React.Component {
    ></SignUp>;
 </div>
 
-      );
+      )
   }
 
 

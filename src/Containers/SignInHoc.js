@@ -78,10 +78,10 @@ class SignInHoc extends React.Component {
   ></SignIn>;
 </div>
 
-     );
+     )
  }
 
 
 }
 
-export default SignInHoc;
+export default SignInHoc
